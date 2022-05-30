@@ -70,3 +70,7 @@ export const Caption = styled.p`
     margin: 0;
     margin-bottom: 10px;
 `;
+
+export const GreenText = styled.span`
+    color: var(--primary);
+`;

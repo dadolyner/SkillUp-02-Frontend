@@ -82,7 +82,7 @@ export const FloatingLabel = styled.div`
 		border-bottom: 2px solid #ddd;
 		background: transparent;
 		padding: 14px 0 0 10px;
-		width: 100%;
+		width: 99%;
 		height: 50px;
 		font-family: Arial, Helvetica, sans-serif;
 		font-size: 16px;
