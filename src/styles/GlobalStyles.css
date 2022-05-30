@@ -4,6 +4,8 @@
     /* Global page colors */
     --primary: #619B8A;
     --dark: #233D4D;
+    --delete: #9b6161;
+    --delete-dark: #634542;
     --green-gradient: linear-gradient(90deg, #659E89 0%, #619B8A 32.12%, #A1C181 100%);
     --orange-gradient: linear-gradient(41.75deg, #FE7F2D 22.78%, #FCCA46 87.18%);
 
