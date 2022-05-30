@@ -1,0 +1,8 @@
+export const WhiteLogo = require('./GeotaggerBWLogo.png')
+export const ColorLogo = require('./GeotaggerColorLogo.png')
+export const Avatar = require('./Avatar.png')
+export const AuthBackground = require('./AuthBackground.png')
+export const ShowPassword = require('./ShowPassword.png')
+export const ImagePlaceholder = require('./ImagePlaceholder.png')
+export const Lock = require('./Lock.png')
+export const Plus = require('./Plus.png')

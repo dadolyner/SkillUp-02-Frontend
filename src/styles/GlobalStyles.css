@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root {
+    /* Global page colors */
     --primary: #619B8A;
     --dark: #233D4D;
     --green-gradient: linear-gradient(90deg, #659E89 0%, #619B8A 32.12%, #A1C181 100%);
     --orange-gradient: linear-gradient(41.75deg, #FE7F2D 22.78%, #FCCA46 87.18%);
 
+    /* Guessed positions colors */
     --first-pos: linear-gradient(41.75deg, #FE7F2D 22.78%, #FCCA46 87.18%);
     --seccond-pos: linear-gradient(41.75deg, #D8D8D8 22.78%, #999999 87.18%);
     --third-pos: linear-gradient(41.75deg, #956956 22.78%, #D79376 87.18%);
     --rest-pos: #233D4D;
+}
+
+html {
+    font-family: 'Roboto';
 }
