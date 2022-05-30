@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Container, FormContainer, BackgroundContainer, ErrorMessage, Logo, Form, HalfWidth, FloatingLabel, BottomLinks, LinkTitle, Link, ShowPass } from './auth.styled';
-import { NavTitle, GreenText } from '../Navigation/navigation.styled';
-import { GreenButton } from '../Buttons/buttons.styled';
-import { Avatar, WhiteLogo, ColorLogo } from '../../images/ImageExporter';
-import { Header3, Paragraph } from '../Typography/typography.styled';
+import { Container, FormContainer, BackgroundContainer, ErrorMessage, Logo, Form, HalfWidth, FloatingLabel, BottomLinks, LinkTitle, Link, ShowPass } from '../components/Auth/auth.styled';
+import { NavTitle, GreenText } from '../components/Navigation/navigation.styled';
+import { GreenButton } from '../components/Buttons/buttons.styled';
+import { Avatar, WhiteLogo, ColorLogo } from '../images/ImageExporter';
+import { Header3, Paragraph } from '../components/Typography/typography.styled';
 
 const SignUp: React.FC = () => {
 	const [isEmailActive, setIsEmailActive] = React.useState(false);
