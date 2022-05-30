@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { Footer, Span } from './footer.styled'
+import { FooterContainer, Span } from './footer.styled'
 
-const FooterContainer: React.FC = () => {
+const Footer: React.FC = () => {
     return (
         <>
-            <Footer>
+            <FooterContainer>
                 <Span>Geotagger</Span>
                 <Span>All Rights Reserved. | skillupmentor.com</Span>
-            </Footer>
+            </FooterContainer>
         </>
     );
 }
 
-export default FooterContainer;
+export default Footer;

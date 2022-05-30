@@ -19,7 +19,7 @@ export const Container = styled.nav`
 	@media screen and (max-width: 900px) {
 		display: grid;
 		grid-template-columns: 50% 50%;
-		align-items: center;
+		align-items: left;
 	}
 `;
 
@@ -39,18 +39,24 @@ export const NavigationLogo = styled.div`
 `;
 
 export const NavigationItems = styled.div<isOpened>`
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	display: flex;
+	flex-direction: row;
 	align-items: center;
 	position: relative;
 	@media screen and (max-width: 900px) {
-		grid-template-columns: 100%;
+		flex-direction: column;
 		overflow: hidden;
-		width: 100%;
 		max-height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
 		transition: all 0.3s ease;
-		grid-column: 1 / span 2;
+        justify-content: left;
 		align-items: left;
+        text-align: left;
+
+        & > a:nth-child(1) { order: 3;}
+        & > a:nth-child(2) { order: 4;}
+        & > a:nth-child(3) { order: 5;}
+        & > a:nth-child(4) { order: 1;}
+        & > a:nth-child(5) { order: 2;}
 	}
 `;
 
@@ -59,14 +65,19 @@ export const Item = styled.a`
 	text-align: center;
 	text-decoration: none;
 	font-size: 16px;
+    max-width: max-content;
 	transition: all 0.3s ease;
 	cursor: pointer;
 	text-underline-offset: 5px;
 	color: #000;
-	&:hover { color: #EFB467; }
+    display: flex;
+    align-items: center;
+	&:hover { color: var(--primary); }
     @media screen and (max-width: 900px) {
         text-align: left;
         padding: 10px;
+        min-width: 100%;
+        font-size: 20px;
     }
 `;
 
@@ -114,4 +125,21 @@ export const NavTitle = styled.h3`
 
 export const GreenText = styled.span`
     color: var(--primary);
+`;
+
+export const TextForImage = styled.span`
+    display: none;
+    margin: 0 10px 0 0;
+    @media screen and (max-width: 900px) {
+        display: block;
+    }
+`;
+
+export const Image = styled.img`
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        transform: scale(1.05);
+    }
 `;
