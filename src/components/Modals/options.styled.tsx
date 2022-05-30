@@ -10,6 +10,7 @@ export const BigContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
 `;
 
 export const Container = styled.div`
@@ -19,6 +20,7 @@ export const Container = styled.div`
     justify-content: center;
     padding: 30px 40px;
     min-width: 500px;
+    background-color: #fff;
 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
