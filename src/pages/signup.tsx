@@ -1,11 +1,17 @@
 import * as React from 'react';
-import { Container, FormContainer, BackgroundContainer, ErrorMessage, Logo, Form, HalfWidth, FloatingLabel, BottomLinks, LinkTitle, Link, ShowPass } from '../components/Auth/auth.styled';
+import { Container, FormContainer, BackgroundContainer, ImageContainer, ErrorMessage, Logo, Form, HalfWidth, FloatingLabel, BottomLinks, LinkTitle, Link, ShowPass } from '../components/Auth/auth.styled';
 import { NavTitle, GreenText } from '../components/Navigation/navigation.styled';
 import { GreenButton } from '../components/Buttons/buttons.styled';
 import { Avatar, WhiteLogo, ColorLogo } from '../images/ImageExporter';
 import { Header3, Paragraph } from '../components/Typography/typography.styled';
+import axios from '../api/axios';
+import { useNavigate } from 'react-router-dom';
+import { generateUploadURL } from '../api/s3';
 
 const SignUp: React.FC = () => {
+    const navigate = useNavigate();
+    const inputFile = React.useRef(null);
+
 	const [isEmailActive, setIsEmailActive] = React.useState(false);
 	const [emailValue, setEmailValue] = React.useState('');
 	const [isFirstNameActive, setIsFirstNameActive] = React.useState(false);
@@ -18,7 +24,6 @@ const SignUp: React.FC = () => {
 	const [passwordConfirmValue, setPasswordConfirmValue] = React.useState('');
 
 	const [errorValue, setErrorValue] = React.useState('');
-
 	const [showPassword, setShowPassword] = React.useState(false);
 
 	const handleEmailChange = (email: string) => { setEmailValue(email); email !== '' ? setIsEmailActive(true) : setIsEmailActive(false); };
@@ -27,19 +32,54 @@ const SignUp: React.FC = () => {
     const handlePasswordChange = (password: string) => { setPasswordValue(password); password !== '' ? setIsPasswordActive(true) : setIsPasswordActive(false); };
 	const handlePasswordConfirmChange = (passwordConfirm: string) => { setPasswordConfirmValue(passwordConfirm); passwordConfirm !== '' ? setIsPasswordConfirmActive(true) : setIsPasswordConfirmActive(false); };
 
+    const signUpFunction = async () => {
+        if(passwordValue === passwordConfirmValue){
+            try {
+                const s3Options = { headers: { 'Content-Type': 'image/png' } };
+                const url = await generateUploadURL(); 
+                axios.put(url, inputFile.current.files[0] , s3Options)
+                const imageUrl = url.split('?')[0];
+
+                if(!imageUrl) {
+                    setErrorValue('Please upload an image');
+                    return;
+                } else {
+                    await axios.post('/auth/register', { 
+                        email: emailValue, 
+                        first_name: firstNameValue, 
+                        last_name: lastNameValue, 
+                        password: passwordValue, 
+                        avatar: imageUrl 
+                    })
+                    navigate('/login');
+                }
+            } catch (error) {
+                if(error.response.status === 409) setErrorValue('Email already in use');
+                else if(error.response.status === 400) setErrorValue('All fields are required');
+                else setErrorValue('Something went wrong');
+            }
+        } else {
+            setErrorValue('Passwords do not match!');
+            return
+        }
+    }
+    
 	return (
 		<>
             <Container>
                 <FormContainer>
-                    <Logo>
-                        <img src={ColorLogo} alt="logo" width={'30px'} height={'40px'}/>
+                    <Logo onClick={() => navigate('/')}>
+                        <img src={ColorLogo} alt="logo" width={'30px'} height={'40px'} />
                         <NavTitle><GreenText>Geo</GreenText>tagger</NavTitle>
                     </Logo>
 
                     <Header3>Sign up</Header3>
 			        <Paragraph>Your name will appear on posts and your public profile.</Paragraph>
 
-			        <img src={Avatar} alt='avatar' height={'64px'} width={'64px'}/>
+                    <ImageContainer>
+                        <input type='file' id='avatar' ref={inputFile} style={{ display: 'none'}} />
+			            <img src={Avatar} alt='avatar' height={'64px'} width={'64px'} onClick={() => {inputFile.current.click()}}/>
+                    </ImageContainer>
 
                     <ErrorMessage>{errorValue}</ErrorMessage>
 
@@ -73,7 +113,8 @@ const SignUp: React.FC = () => {
                             <ShowPass onClick={() => setShowPassword(showPassword ? false : true)}/>
 			        	</FloatingLabel>
 			        </Form>
-			        <GreenButton>SIGN UP</GreenButton>
+
+			        <GreenButton onClick={() => signUpFunction()}>SIGN UP</GreenButton>
 
                     <BottomLinks>
                         <LinkTitle>Already have an account?</LinkTitle>
