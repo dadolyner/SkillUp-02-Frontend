@@ -9,6 +9,9 @@ export const Container = styled.div`
     width: 100vw;
     display: grid;
     grid-template-columns: 40% 60%;
+    @media screen and (max-width: 900px) {
+        grid-template-columns: 100%;
+	}
 `;
 
 export const FormContainer = styled.div`
@@ -32,6 +35,10 @@ export const BackgroundContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media screen and (max-width: 900px) {
+        display: none;
+    }
 `;
 
 export const Logo = styled.div`
@@ -43,6 +50,7 @@ export const Logo = styled.div`
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
+    cursor: pointer;
 `;
 
 export const Form = styled.form`
@@ -136,4 +144,23 @@ export const ShowPass = styled.div`
     background-repeat: no-repeat;
     width: 21px;
     height: 15px;
+`;
+
+export const ImageContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    user-select: none;
+    & > img {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        transition: all 0.2s ease-out;
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+    }
 `;

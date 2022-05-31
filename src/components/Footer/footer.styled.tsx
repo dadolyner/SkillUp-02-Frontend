@@ -14,6 +14,10 @@ export const FooterContainer = styled.footer`
     height: 5px;
 
     background: var(--primary);
+
+    @media screen and (max-width: 900px) {
+        font-size: 12px;
+    }
 `;
 
 export const Span = styled.span`

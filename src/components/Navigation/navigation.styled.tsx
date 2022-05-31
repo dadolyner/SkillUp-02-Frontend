@@ -17,8 +17,9 @@ export const Container = styled.nav`
 	z-index: 20;
 	background-color: #fff;
 	@media screen and (max-width: 900px) {
-		display: grid;
-		grid-template-columns: 33% 33% 33%;
+        display: grid;
+        &.loggedIn { grid-template-columns: 33% 33% 33%; }
+        &.notLoggedIn { grid-template-columns: 50% 50%; }
 		align-items: left;
 	}
 `;
@@ -139,6 +140,7 @@ export const Image = styled.img`
     &.guessLocation { display: none; }
     width: 40px;
     height: 40px;
+    border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     &:hover { transform: scale(1.05); }

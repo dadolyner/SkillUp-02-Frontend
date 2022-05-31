@@ -9,12 +9,19 @@ const Navigation: React.FC = () => {
 	const [isOpen, setIsOpen] = React.useState(false);
     const isLoggedIn = localStorage.getItem('userLoggedIn');
 
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+    const logOutFunction = () => {
+        localStorage.removeItem('userLoggedIn');
+        localStorage.removeItem('userInfo');
+        navigate('/');
+    }
+
 	return (
 		<>
-			<Container>
-                    <Image className='guessLocation' src={Plus} alt="logo" width={'40px'} height={'40px'}/>
-                
-
+			<Container className={isLoggedIn ? 'loggedIn' : 'notLoggedIn'}>
+                { isLoggedIn && <Image className='guessLocation' src={Plus} alt="logo" width={'40px'} height={'40px'}/>}
+                    
 				<NavigationLogo onClick={() => { navigate('/') }}>
                     <img src={ColorLogo} alt="logo" width={'30px'} height={'40px'}/>
                     <NavTitle><GreenText>Geo</GreenText>tagger</NavTitle>
@@ -29,12 +36,12 @@ const Navigation: React.FC = () => {
 				<NavigationItems isOpen={isOpen}>
                     { isLoggedIn ? (
                         <>
-                            <Item onClick={() => { setIsOpen(false) }}>Home</Item>
-					        <Item onClick={() => { setIsOpen(false) }}>Profile settings</Item>
-					        <Item onClick={() => { setIsOpen(false) }}>Logout</Item>
+                            <Item onClick={() => { setIsOpen(false); navigate('/') }}>Home</Item>
+					        <Item onClick={() => { setIsOpen(false); navigate('/profile-settings') }}>Profile settings</Item>
+					        <Item onClick={() => { setIsOpen(false); logOutFunction(); }}>Logout</Item>
 					        <Item onClick={() => { setIsOpen(false) }}>
-                                <Image src={Avatar} alt="logo" width={'40px'} height={'40px'}/>
-                                <TextForImage>David Škulj</TextForImage>
+                                <Image src={userInfo.avatar ? userInfo.avatar : Avatar} alt="logo" width={'40px'} height={'40px'}/>
+                                <TextForImage>{userInfo.first_name} {userInfo.last_name}</TextForImage>
                             </Item>
                             <Item onClick={() => { setIsOpen(false) }}><Image className='navPlus' src={Plus} alt="logo" width={'40px'} height={'40px'}/></Item>
                         </>

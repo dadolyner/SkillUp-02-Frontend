@@ -10,7 +10,6 @@ export const BigContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.3);
 `;
 
 export const Container = styled.div`
@@ -53,4 +52,7 @@ export const ImageConatiner = styled.div`
     justify-content: center;
     width: 100%;
     margin: 20px 0;
+    & > img {
+        border-radius: 50%;
+    }
 `;

@@ -9,3 +9,7 @@ export const Plus = require('./Plus.png')
 export const MapBackground = require('./MapBackground.png')
 export const Delete = require('./Delete.png')
 export const Edit = require('./Edit.png')
+
+export const Bled  = require('./sample_locations/Bled.png')
+export const Logatec  = require('./sample_locations/logatec.png')
+export const GornjiGrad  = require('./sample_locations/gornji-grad.png')

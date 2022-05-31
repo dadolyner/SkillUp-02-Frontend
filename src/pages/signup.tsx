@@ -118,7 +118,7 @@ const SignUp: React.FC = () => {
 
                     <BottomLinks>
                         <LinkTitle>Already have an account?</LinkTitle>
-                        <Link href='/'>Sign in</Link>
+                        <Link onClick={() => navigate('/login')}>Sign in</Link>
                     </BottomLinks>
                 </FormContainer>
 

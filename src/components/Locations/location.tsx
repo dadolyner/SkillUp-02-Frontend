@@ -10,6 +10,7 @@ type LocationProps = {
     isLocked: boolean;
     isGuessed: boolean;
     isMyLocation: boolean;
+    onClick?: () => void;
 }
 
 const Location: React.FC<LocationProps> = (props: LocationProps) => {
