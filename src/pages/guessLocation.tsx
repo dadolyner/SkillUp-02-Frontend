@@ -6,8 +6,6 @@ import { Header4, Paragraph, GreenText } from '../components/Typography/typograp
 import { GreenButton } from '../components/Buttons/buttons.styled';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 
-
-
 const GuessLocation: React.FC = () => {
     const client = require('@bigdatacloudapi/client')(process.env.REACT_APP_GEO_KEY)
 	const { isLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY });
@@ -48,8 +46,8 @@ const GuessLocation: React.FC = () => {
                                 zoom={10} 
                                 center={center} 
                                 mapContainerStyle={{ height: '500px', width: '100%' }} 
-                                onClick={(event: any) => handleChangeCoords(event)} 
-                            >
+                                onClick={(event: any) => handleChangeCoords(event)} >
+                                    
                                 <Marker position={{ lat: latitude, lng: longitude }} />
                             </GoogleMap>
 						</GoogleMapsContainer>
