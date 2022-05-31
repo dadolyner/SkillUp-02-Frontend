@@ -16,7 +16,7 @@ export const FooterContainer = styled.footer`
     background: var(--primary);
 
     @media screen and (max-width: 900px) {
-        font-size: 12px;
+        font-size: 10px;
     }
 `;
 

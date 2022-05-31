@@ -36,6 +36,11 @@ export const Container = styled.div<LocationProps>`
         transform: scale(1.02);
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
     }
+
+    @media screen and (max-width: 500px) {
+        width: 300px;
+        height: 200px;
+    }
 `;
 
 export const Background = styled.div`

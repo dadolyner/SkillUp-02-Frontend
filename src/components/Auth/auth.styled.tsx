@@ -120,7 +120,11 @@ export const BottomLinks = styled.div`
     font-size: 16px;
 `;
 
-export const LinkTitle = styled.div``;
+export const LinkTitle = styled.div`
+    @media screen and (max-width: 500px) {
+        font-size: 12px;
+    }
+`;
 
 export const Link = styled.a`
     color: var(--primary);
@@ -128,6 +132,9 @@ export const Link = styled.a`
     text-decoration: none;
     &:hover {
         color: var(--dark);
+    }
+    @media screen and (max-width: 500px) {
+        font-size: 12px;
     }
 `;
 

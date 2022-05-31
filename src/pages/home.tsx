@@ -19,24 +19,15 @@ const Home: React.FC = () => {
             <Container> 
                 <BackgroundContainer>
                     <LeftBox>
-                        <GreenText><Header2 style={{textAlign: 'left', fontWeight:'400'}}>Explore the world with Geotagger!</Header2></GreenText>
-                        <br/>
-                        <Paragraph style={{textAlign: 'left'}}>
-                            Geotagger is awebsite that allows you to post picture and tag it on the map.
-                            Other user than try to locate it via Google maps
-                        </Paragraph>
-                        <br/>
-                        <GreenButton style={{width: '150px'}} onClick={() => navigate('/register')}>SIGN UP</GreenButton>
+                        <GreenText><Header2 style={{textAlign: 'left', fontWeight:'400'}}>Explore the world with Geotagger!</Header2></GreenText><br/>
+                        <Paragraph style={{textAlign: 'left'}}>Geotagger is awebsite that allows you to post picture and tag it on the map. Other user than try to locate it via Google maps</Paragraph>          
+                        <GreenButton style={{width: '150px'}} onClick={() => navigate('/register')}>SIGN UP</GreenButton><br/>
                     </LeftBox>
                     <RightBox></RightBox>
                 </BackgroundContainer>
 
-                
                 <GreenText style={{marginTop: '150px'}}><Header5>Try yourself at Geotagger!</Header5></GreenText>
-                <Paragraph>
-                    Try to guess the location of image by selecting position on the map. <br/>
-                    When you guess it, it gives you the error distance.
-                </Paragraph>
+                <Paragraph>Try to guess the location of image by selecting position on the map. <br/> When you guess it, it gives you the error distance.</Paragraph>
                 
                 <GridContainer style={{marginTop: '50px'}}>
                     <div onClick={() => navigate('/register')}><Location key='bled' image={Bled} distance={250} isLocked={true} isGuessed={false} isMyLocation={false} /></div>

@@ -7,6 +7,9 @@ export const Header1 = styled.h1`
     text-align: center;
     margin: 0;
     margin-bottom: 10px;
+    @media screen and (max-width: 900px) {
+        text-align: center !important;
+    }
 `;
 
 export const Header2 = styled.h2`
@@ -16,6 +19,9 @@ export const Header2 = styled.h2`
     text-align: center;
     margin: 0;
     margin-bottom: 10px;
+    @media screen and (max-width: 900px) {
+        text-align: center !important;
+    }
 `;
 
 export const Header3 = styled.h3`
@@ -25,6 +31,9 @@ export const Header3 = styled.h3`
     text-align: center;
     margin: 0;
     margin-bottom: 10px;
+    @media screen and (max-width: 900px) {
+        text-align: center !important;
+    }
 `;
 
 export const Header4 = styled.h4`
@@ -34,6 +43,9 @@ export const Header4 = styled.h4`
     text-align: center;
     margin: 0;
     margin-bottom: 10px;
+    @media screen and (max-width: 900px) {
+        text-align: center !important;
+    }
 `;
 
 export const Header5 = styled.h5`
@@ -43,6 +55,9 @@ export const Header5 = styled.h5`
     text-align: center;
     margin: 0;
     margin-bottom: 10px;
+    @media screen and (max-width: 900px) {
+        text-align: center !important;
+    }
 `;
 
 export const Paragraph = styled.p`
@@ -52,6 +67,9 @@ export const Paragraph = styled.p`
     text-align: center;
     margin: 0;
     margin-bottom: 10px;
+    @media screen and (max-width: 900px) {
+        text-align: center !important;
+    }
 `;
 
 export const ParagraphBold = styled.p`
@@ -60,6 +78,9 @@ export const ParagraphBold = styled.p`
     text-align: center;
     margin: 0;
     margin-bottom: 10px;
+    @media screen and (max-width: 900px) {
+        text-align: center !important;
+    }
 `;
 
 export const Caption = styled.p`
@@ -69,6 +90,9 @@ export const Caption = styled.p`
     text-align: center;
     margin: 0;
     margin-bottom: 10px;
+    @media screen and (max-width: 900px) {
+        text-align: center !important;
+    }
 `;
 
 export const GreenText = styled.span`

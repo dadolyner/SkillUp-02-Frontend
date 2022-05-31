@@ -34,7 +34,7 @@ export const NavigationLogo = styled.div`
 	justify-content: flex-start;
     gap: 10px;
 	&:hover { cursor: pointer; }
-    & > h3 { margin: 0; }
+    & > h3 { margin: 0; font-size: 20px; }
 `;
 
 export const NavigationItems = styled.div<isOpened>`
@@ -122,6 +122,9 @@ export const NavTitle = styled.h3`
     margin: 0;
     font-size: 32px;
     font-weight: 500;
+    @media screen and (max-width: 500px) {
+        font-size: 24px;
+    }
 `;
 
 export const GreenText = styled.span`
