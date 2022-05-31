@@ -18,7 +18,7 @@ export const Container = styled.nav`
 	background-color: #fff;
 	@media screen and (max-width: 900px) {
 		display: grid;
-		grid-template-columns: 50% 50%;
+		grid-template-columns: 33% 33% 33%;
 		align-items: left;
 	}
 `;
@@ -33,9 +33,7 @@ export const NavigationLogo = styled.div`
 	justify-content: flex-start;
     gap: 10px;
 	&:hover { cursor: pointer; }
-    & > h3 {
-        margin: 0;
-    }
+    & > h3 { margin: 0; }
 `;
 
 export const NavigationItems = styled.div<isOpened>`
@@ -44,6 +42,7 @@ export const NavigationItems = styled.div<isOpened>`
 	align-items: center;
 	position: relative;
 	@media screen and (max-width: 900px) {
+        grid-column: 1 / span 3;
 		flex-direction: column;
 		overflow: hidden;
 		max-height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
@@ -52,11 +51,10 @@ export const NavigationItems = styled.div<isOpened>`
 		align-items: left;
         text-align: left;
 
-        & > a:nth-child(1) { order: 3;}
-        & > a:nth-child(2) { order: 4;}
-        & > a:nth-child(3) { order: 5;}
+        & > a:nth-child(1) { order: 2;}
+        & > a:nth-child(2) { order: 3;}
+        & > a:nth-child(3) { order: 4;}
         & > a:nth-child(4) { order: 1;}
-        & > a:nth-child(5) { order: 2;}
 	}
 `;
 
@@ -73,11 +71,13 @@ export const Item = styled.a`
     display: flex;
     align-items: center;
 	&:hover { color: var(--primary); }
+    &.loggedOutHome { display: none; }
     @media screen and (max-width: 900px) {
         text-align: left;
         padding: 10px;
         min-width: 100%;
         font-size: 20px;
+        &.loggedOutHome { display: flex; margin-bottom: 50px;}
     }
 `;
 
@@ -129,17 +129,22 @@ export const GreenText = styled.span`
 
 export const TextForImage = styled.span`
     display: none;
-    margin: 0 10px 0 0;
+    margin: 0 0 0 20px;
     @media screen and (max-width: 900px) {
         display: block;
     }
 `;
 
 export const Image = styled.img`
+    &.guessLocation { display: none; }
     width: 40px;
     height: 40px;
+    cursor: pointer;
     transition: all 0.3s ease-in-out;
-    &:hover {
-        transform: scale(1.05);
+    &:hover { transform: scale(1.05); }
+
+    @media screen and (max-width: 900px) {
+        &.navPlus { display: none; }
+        &.guessLocation { display: block; }
     }
 `;
