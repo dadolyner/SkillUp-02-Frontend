@@ -39,7 +39,7 @@ const Navigation: React.FC = () => {
                             <Item onClick={() => { setIsOpen(false); navigate('/') }}>Home</Item>
 					        <Item onClick={() => { setIsOpen(false); navigate('/profile-settings') }}>Profile settings</Item>
 					        <Item onClick={() => { setIsOpen(false); logOutFunction(); }}>Logout</Item>
-					        <Item onClick={() => { setIsOpen(false) }}>
+					        <Item onClick={() => { setIsOpen(false); navigate('/profile') }}>
                                 <Image src={userInfo.avatar ? userInfo.avatar : Avatar} alt="logo" width={'40px'} height={'40px'}/>
                                 <TextForImage>{userInfo.first_name} {userInfo.last_name}</TextForImage>
                             </Item>
