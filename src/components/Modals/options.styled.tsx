@@ -18,22 +18,25 @@ export const Container = styled.div`
     align-items: flex-start;
     justify-content: center;
     padding: 30px 40px;
-    min-width: 500px;
     background-color: #fff;
+    min-width: 200px;
 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+
+    @media screen and (max-width: 900px) {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+    }
 `;
 
 export const ChangeOptions = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    column-gap: 20px;
 
-    & > button {
-        width: 300px;
+    @media screen and (max-width: 900px) {
+        grid-template-columns: 1fr;
     }
 `;
 
