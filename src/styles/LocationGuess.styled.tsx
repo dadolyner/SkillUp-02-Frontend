@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     margin: 100px 0;
+    padding: 0 50px;
     display: grid;
     grid-template-columns: 59% 1% 40%;
 `;

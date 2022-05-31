@@ -1,10 +1,11 @@
 import * as React from 'react';
 import Navigation from '../components/Navigation/navigation';
 import Footer from '../components/Footer/footer';
-import { Container, MapsContainer, LocationImage, GoogleMapsContainer, GuessInfo, LeaderboardContainer, Input } from '../styles/guessLocation.styled';
+import { Container, MapsContainer, LocationImage, GoogleMapsContainer, GuessInfo, LeaderboardContainer, Input } from '../styles/LocationGuess.styled';
 import { Header4, Paragraph, GreenText } from '../components/Typography/typography.styled';
 import { GreenButton } from '../components/Buttons/buttons.styled';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import { ImagePlaceholder } from '../images/ImageExporter';
 
 const GuessLocation: React.FC = () => {
     const client = require('@bigdatacloudapi/client')(process.env.REACT_APP_GEO_KEY)
@@ -39,13 +40,15 @@ const GuessLocation: React.FC = () => {
 							Take a <GreenText>guess</GreenText>!
 						</Header4>
 
-						<LocationImage></LocationImage>
-
+						<LocationImage>
+                            <img src={ImagePlaceholder} alt={'location_image.png'} height={'300px'} width={'100%'} />
+                        </LocationImage>
+                        <br/>
 						<GoogleMapsContainer>
 							<GoogleMap
                                 zoom={10} 
                                 center={center} 
-                                mapContainerStyle={{ height: '500px', width: '100%' }} 
+                                mapContainerStyle={{ height: '300px', width: '100%' }} 
                                 onClick={(event: any) => handleChangeCoords(event)} >
                                     
                                 <Marker position={{ lat: latitude, lng: longitude }} />

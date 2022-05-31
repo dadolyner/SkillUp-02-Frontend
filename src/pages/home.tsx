@@ -2,7 +2,7 @@ import * as React from 'react';
 import Footer from '../components/Footer/footer';
 import Navigation from '../components/Navigation/navigation';
 import { Header2, Header5, Paragraph, GreenText } from '../components/Typography/typography.styled';
-import { Container, BackgroundContainer, LeftBox, RightBox } from '../styles/home.styled'
+import { Container, BackgroundContainer, LeftBox, RightBox } from '../styles/Home.styled'
 import { GreenButton } from '../components/Buttons/buttons.styled';
 import { GridContainer } from '../components/Locations/location.styled';
 import { Bled, Logatec, GornjiGrad } from '../images/ImageExporter';

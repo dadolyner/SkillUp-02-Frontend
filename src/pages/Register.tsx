@@ -8,7 +8,7 @@ import axios from '../api/axios';
 import { useNavigate } from 'react-router-dom';
 import { generateUploadURL } from '../api/s3';
 
-const SignUp: React.FC = () => {
+const Register: React.FC = () => {
     const navigate = useNavigate();
     const inputFile = React.useRef(null);
 
@@ -130,4 +130,4 @@ const SignUp: React.FC = () => {
 	);
 };
 
-export default SignUp;
+export default Register;
