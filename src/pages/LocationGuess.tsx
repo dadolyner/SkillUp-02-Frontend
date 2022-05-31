@@ -44,12 +44,7 @@ const GuessLocation: React.FC = () => {
 						<LocationImage><img src={ImagePlaceholder} alt={'location_image.png'} height={'300px'} width={'100%'} /></LocationImage>
 
 						<GoogleMapsContainer>
-							<GoogleMap
-                                zoom={10} 
-                                center={center} 
-                                mapContainerStyle={{ height: '300px', width: '100%' }} 
-                                onClick={(event: any) => handleChangeCoords(event)} >
-                                    
+							<GoogleMap zoom={10} center={center} mapContainerStyle={{ height: '300px', width: '100%' }} onClick={(event: any) => handleChangeCoords(event)} >
                                 <Marker key={new Date().getTime().toString()} position={{ lat: latitude , lng: longitude }} />
                             </GoogleMap>
 						</GoogleMapsContainer><br/>
