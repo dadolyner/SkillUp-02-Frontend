@@ -23,8 +23,8 @@ const Login: React.FC = () => {
         try {
             const loginResponse = await axios.post('/auth/login', { email: emailValue, password: passwordValue })
             
-            const accessToken = loginResponse.data.accesToken;
-		    localStorage.setItem('accessToken', loginResponse.data.accesToken);
+            const accessToken = loginResponse.data.accessToken;
+		    localStorage.setItem('accessToken', loginResponse.data.accessToken);
 		    localStorage.setItem('userLoggedIn', 'true');
 		    const userInfoResponse = await axios.get('/user/me', { headers: { Authorization: `Bearer ${accessToken}` } });
 		    localStorage.setItem('userInfo', JSON.stringify(userInfoResponse.data));
