@@ -14,13 +14,14 @@ const Navigation: React.FC = () => {
     const logOutFunction = () => {
         localStorage.removeItem('userLoggedIn');
         localStorage.removeItem('userInfo');
+        localStorage.removeItem('accessToken');
         navigate('/');
     }
 
 	return (
 		<>
 			<Container className={isLoggedIn ? 'loggedIn' : 'notLoggedIn'}>
-                { isLoggedIn && <Image className='guessLocation' src={Plus} alt="logo" width={'40px'} height={'40px'}/>}
+                { isLoggedIn && <Image className='guessLocation' src={Plus} alt="logo" width={'40px'} height={'40px'} onClick={() => navigate('/location/create') }/>}
                     
 				<NavigationLogo onClick={() => { navigate('/') }}>
                     <img src={ColorLogo} alt="logo" width={'30px'} height={'40px'}/>
@@ -43,7 +44,7 @@ const Navigation: React.FC = () => {
                                 <Image src={userInfo.avatar ? userInfo.avatar : Avatar} alt="logo" width={'40px'} height={'40px'}/>
                                 <TextForImage>{userInfo.first_name} {userInfo.last_name}</TextForImage>
                             </Item>
-                            <Item onClick={() => { setIsOpen(false) }}><Image className='navPlus' src={Plus} alt="logo" width={'40px'} height={'40px'}/></Item>
+                            <Item onClick={() => { setIsOpen(false); navigate('/location/create') }}><Image className='navPlus' src={Plus} alt="logo" width={'40px'} height={'40px'}/></Item>
                         </>
                     ) : (
                         <>

@@ -9,6 +9,19 @@ export const Container = styled.div`
     width: 100%;
 `;
 
+export const LoggedInContainer = styled.div`
+    padding: 0 30px;
+    margin-bottom: 100px;
+`;
+
+export const FullWidthContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
 export const BackgroundContainer = styled.div`
     margin-top: 100px;
     display: flex;

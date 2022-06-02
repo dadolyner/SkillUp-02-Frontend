@@ -25,6 +25,7 @@ const Register: React.FC = () => {
 
 	const [errorValue, setErrorValue] = React.useState('');
 	const [showPassword, setShowPassword] = React.useState(false);
+    const [image, setImage] = React.useState(null);
 
 	const handleEmailChange = (email: string) => { setEmailValue(email); email !== '' ? setIsEmailActive(true) : setIsEmailActive(false); };
 	const handleFirstNameChange = (first_name: string) => { setFirstNameValue(first_name); first_name !== '' ? setIsFirstNameActive(true) : setIsFirstNameActive(false); };
@@ -32,15 +33,18 @@ const Register: React.FC = () => {
     const handlePasswordChange = (password: string) => { setPasswordValue(password); password !== '' ? setIsPasswordActive(true) : setIsPasswordActive(false); };
 	const handlePasswordConfirmChange = (passwordConfirm: string) => { setPasswordConfirmValue(passwordConfirm); passwordConfirm !== '' ? setIsPasswordConfirmActive(true) : setIsPasswordConfirmActive(false); };
 
+    const uploadImage = async() => {
+        const s3Options = { headers: { 'Content-Type': 'image/png' } };
+        const url = await generateUploadURL(); 
+        await axios.put(url, inputFile.current.files[0] , s3Options)
+        const imageUrl = url.split('?')[0];
+        setImage(imageUrl);
+    }
+
     const signUpFunction = async () => {
         if(passwordValue === passwordConfirmValue){
             try {
-                const s3Options = { headers: { 'Content-Type': 'image/png' } };
-                const url = await generateUploadURL(); 
-                axios.put(url, inputFile.current.files[0] , s3Options)
-                const imageUrl = url.split('?')[0];
-
-                if(!imageUrl) {
+                if(!image) {
                     setErrorValue('Please upload an image');
                     return;
                 } else {
@@ -49,7 +53,7 @@ const Register: React.FC = () => {
                         first_name: firstNameValue, 
                         last_name: lastNameValue, 
                         password: passwordValue, 
-                        avatar: imageUrl 
+                        avatar: image 
                     })
                     navigate('/login');
                 }
@@ -77,8 +81,8 @@ const Register: React.FC = () => {
 			        <Paragraph>Your name will appear on posts and your public profile.</Paragraph>
 
                     <ImageContainer>
-                        <input type='file' id='avatar' ref={inputFile} style={{ display: 'none'}} />
-			            <img src={Avatar} alt='avatar' height={'64px'} width={'64px'} onClick={() => {inputFile.current.click()}}/>
+                        <input type='file' id='avatar' ref={inputFile} style={{ display: 'none'}} onChange={() => uploadImage()}/>
+			            <img src={image ? image : Avatar} alt='avatar' height={'64px'} width={'64px'} onClick={() => { inputFile.current.click() }} />
                     </ImageContainer>
 
                     <ErrorMessage>{errorValue}</ErrorMessage>

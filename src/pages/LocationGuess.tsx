@@ -9,13 +9,14 @@ import { GoogleMap, useLoadScript, Marker,  } from '@react-google-maps/api';
 import { ImagePlaceholder } from '../images/ImageExporter';
 
 const GuessLocation: React.FC = () => {
+    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY);
+    Geocode.setLanguage("en");
 	const { isLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY });
+    
     const [latitude, setLatitude] = React.useState(0);
     const [longitude, setLongitude] = React.useState(0);
     const [location, setLocation] = React.useState(null);
 
-    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY);
-    Geocode.setLanguage("en");
 
     const center = React.useMemo(() => ({ lat: 46, lng: 14 }), []);
     const handleChangeCoords = async (event: any) => {
@@ -28,6 +29,10 @@ const GuessLocation: React.FC = () => {
                 (error) => console.error(error)
             );
         } catch (error) {}
+    }
+
+    const guessLocation = async () => {
+        
     }
 
 	if (isLoaded) {
@@ -44,7 +49,17 @@ const GuessLocation: React.FC = () => {
 						<LocationImage><img src={ImagePlaceholder} alt={'location_image.png'} height={'300px'} width={'100%'} /></LocationImage>
 
 						<GoogleMapsContainer>
-							<GoogleMap zoom={10} center={center} mapContainerStyle={{ height: '300px', width: '100%' }} onClick={(event: any) => handleChangeCoords(event)} >
+							<GoogleMap 
+                                center={center} 
+                                zoom={10} 
+                                options={{
+                                    streetViewControl: false,
+                                    mapTypeControl: false,
+                                    fullscreenControl: true,
+                                }}
+                                mapContainerStyle={{ height: '300px', width: '100%' }} 
+                                onClick={(event: any) => handleChangeCoords(event)} >
+
                                 <Marker key={new Date().getTime().toString()} position={{ lat: latitude , lng: longitude }} />
                             </GoogleMap>
 						</GoogleMapsContainer><br/>

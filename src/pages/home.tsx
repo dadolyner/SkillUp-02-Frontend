@@ -2,16 +2,41 @@ import * as React from 'react';
 import Footer from '../components/Footer/footer';
 import Navigation from '../components/Navigation/navigation';
 import { Header2, Header5, Paragraph, GreenText } from '../components/Typography/typography.styled';
-import { Container, BackgroundContainer, LeftBox, RightBox } from '../styles/Home.styled'
-import { GreenButton } from '../components/Buttons/buttons.styled';
+import { Container, LoggedInContainer, BackgroundContainer, FullWidthContainer, LeftBox, RightBox } from '../styles/Home.styled'
+import { GreenButton, LoadMore } from '../components/Buttons/buttons.styled';
 import { GridContainer } from '../components/Locations/location.styled';
 import { Bled, Logatec, GornjiGrad } from '../images/ImageExporter';
 import Location from '../components/Locations/location'
 import { useNavigate } from 'react-router-dom';
+import axios from '../api/axios';
 
 const Home: React.FC = () => {
     const navigate = useNavigate();
+    const [locations, setLocations] = React.useState([]);
+    const [guesses, setGuesses] = React.useState([]);
+    const [guessesLimit, setGuessesLimit] = React.useState(4);
+    const [locationsLimit, setLocationsLimit] = React.useState(9);
 
+    const isLoggedIn = localStorage.getItem('userLoggedIn')
+
+    const getData = async () => {
+        try {
+            const response = await axios.get('/location');
+            const { data } = response
+            
+            const info = JSON.parse(localStorage.getItem('userInfo'))
+            const myGuesses = info.guess.sort((a: any, b: any) => {return a.distance - b.distance})
+            const myGuessesAndLocations = info.guess.map((guess: any) => guess.locationId)
+            const filteredLocations = data.filter((location:any) => !myGuessesAndLocations.includes(location.id) && location.userId !== info.id).sort((a: any, b: any) => { return a.timestamp - b.timestamp })
+            
+            setGuesses(myGuesses)
+            setLocations(filteredLocations);
+        } catch (error) {}
+    }
+    React.useEffect(() => { getData() }, []);
+
+
+    if( isLoggedIn !== 'true') {
     return (
         <>
             <Navigation />
@@ -30,9 +55,9 @@ const Home: React.FC = () => {
                 <Paragraph>Try to guess the location of image by selecting position on the map. <br/> When you guess it, it gives you the error distance.</Paragraph>
                 
                 <GridContainer style={{marginTop: '50px'}}>
-                    <div onClick={() => navigate('/register')}><Location key='bled' image={Bled} distance={250} isLocked={true} isGuessed={false} isMyLocation={false} /></div>
-                    <div onClick={() => navigate('/register')}><Location key='logatec' image={Logatec} distance={250} isLocked={true} isGuessed={false} isMyLocation={false} /></div>
-                    <div onClick={() => navigate('/register')}><Location key='gornjigrad' image={GornjiGrad} distance={250} isLocked={true} isGuessed={false} isMyLocation={false} /></div>
+                    <div onClick={() => navigate('/register')}><Location key='bled' image={Bled} isLocked={true} /></div>
+                    <div onClick={() => navigate('/register')}><Location key='logatec' image={Logatec} isLocked={true} /></div>
+                    <div onClick={() => navigate('/register')}><Location key='gornjigrad' image={GornjiGrad} isLocked={true} /></div>
                 </GridContainer>
 
                 <GreenButton style={{width: '150px', marginTop: '80px', marginBottom: '150px'}} onClick={() => navigate('/register')}>SIGN UP</GreenButton>
@@ -41,6 +66,44 @@ const Home: React.FC = () => {
             <Footer />
         </>
     )
+    }
+    else {
+        return (
+            <>
+                <Navigation />
+
+                <LoggedInContainer>
+                    <div style={{marginTop: '100px'}}>
+                        <GreenText style={{marginTop: '150px'}}><Header5 style={{textAlign:'left'}}>Personal best guesses</Header5></GreenText>
+                        <Paragraph style={{textAlign:'left'}}>Your personal best guesses appear here. Go on and try to beat your personal records or set a new one!</Paragraph>
+                    </div>
+
+                    <GridContainer className='leftAlign'>
+                        { guesses.slice(0, guessesLimit).map((guess: any) => { return <Location key={guess.id} image={guess.locationImage} distance={guess.distance} isGuessed={true} /> })}
+                    </GridContainer>
+
+                    <FullWidthContainer>
+                        <LoadMore style={{width: '200px'}} onClick={() => setGuessesLimit(guessesLimit + 4) }>Load more</LoadMore>
+                    </FullWidthContainer>
+
+                    <div style={{marginTop: '100px'}}>
+                        <GreenText style={{marginTop: '150px'}}><Header5 style={{textAlign:'left'}}>New locations</Header5></GreenText>
+                        <Paragraph style={{textAlign:'left'}}>New uploads from users. Try to guess all the locations by pressing on a picture.</Paragraph>
+                    </div>
+
+                    <GridContainer>
+                        { locations.slice(0, locationsLimit).map((location: any) => { return <Location key={location.id} image={location.image} /> })}
+                    </GridContainer>
+
+                    <FullWidthContainer>
+                        <LoadMore style={{width: '200px'}} onClick={() => setLocationsLimit(locationsLimit + 9) }>Load more</LoadMore>
+                    </FullWidthContainer>
+                </LoggedInContainer>
+
+                <Footer />
+            </>
+        )
+    }
 }
 
 export default Home;

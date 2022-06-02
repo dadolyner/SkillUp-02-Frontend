@@ -12,12 +12,21 @@ export const GridContainer = styled.div`
     row-gap: 20px;
     column-gap: 20px;
     width: 100%;
+
+    &.leftAlign { 
+        justify-content: flex-start; 
+        @media screen and (max-width: 900px) {
+            justify-content: center;
+        }
+    }
 `;
 
 export const Container = styled.div<LocationProps>`
+    flex: 0 0 31%;
     border-radius: 5px;
-    width: 420px;
-    height: 240px;
+    width: 100%;
+    height: 200px;
+    min-width: 280px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
     background-image: url(${props => props.image});
@@ -35,11 +44,6 @@ export const Container = styled.div<LocationProps>`
     &:hover {
         transform: scale(1.02);
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
-    }
-
-    @media screen and (max-width: 500px) {
-        width: 300px;
-        height: 200px;
     }
 `;
 

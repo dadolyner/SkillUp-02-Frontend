@@ -9,6 +9,7 @@ import ChangePassword from './ChangePassword';
 import ChangeProfileImage from './ChangeProfileImage';
 import Profile from './Profile';
 import GuessLocation from './LocationGuess';
+import AddLocation from './AddLocation';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
 	    		<Route path='/add-location' element={<ChangeProfileImage />} />
 	    		<Route path='/edit-location' element={<ChangeProfileImage />} />
 	    		<Route path='/location/guess/:id' element={<GuessLocation />} />
+	    		<Route path='/location/create' element={<AddLocation />} />
 	    	</Routes>
         </BrowserRouter>
     </>

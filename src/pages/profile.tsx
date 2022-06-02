@@ -6,10 +6,11 @@ import Footer from '../components/Footer/footer';
 import { Header4, Header5 } from '../components/Typography/typography.styled';
 import { GridContainer } from '../components/Locations/location.styled';
 import { LoadMore } from '../components/Buttons/buttons.styled';
+import Location from '../components/Locations/location'
 
 const Profile: React.FC = () => {
-
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const guesses = userInfo.guess.sort((a: any, b: any) => {return a.distance - b.distance});
 
     return (
         <>
@@ -23,18 +24,18 @@ const Profile: React.FC = () => {
 
                 <BestGuessesContainer>
                     <Header5>My best guesses</Header5>
-                    <GridContainer>
-
+                    <GridContainer className='leftAlign'>
+                        { guesses.map((guess: any) => { return <Location className='profileLocation' key={guess.id} image={guess.locationImage} distance={guess.distance} isGuessed={true} /> })}
                     </GridContainer>
-                    <LoadMore style={{width: '200px'}}>Load More</LoadMore>
+                    <LoadMore style={{width: '200px', marginTop:'20px'}}>Load More</LoadMore>
                 </BestGuessesContainer>
 
                 <MyUploadsContainer>
                     <Header5>My uploads</Header5>
-                    <GridContainer>
-
+                    <GridContainer className='leftAlign'>
+                        { userInfo.location.map((location: any) => { return <Location className='profileLocation' key={location.id} image={location.image} isMyLocation={true} /> })}
                     </GridContainer>
-                    <LoadMore style={{width: '200px'}}>Load More</LoadMore>
+                    <LoadMore style={{width: '200px', marginTop:'20px'}}>Load More</LoadMore>
                 </MyUploadsContainer>
             </Container>
 
