@@ -4,8 +4,10 @@ import { Container, Background, Holder } from './location.styled';
 import { Lock } from '../../images/ImageExporter'
 import { EditLocation, DeleteLocation } from '../Buttons/buttons.styled';
 import Distance from '../distance';
+import { useNavigate } from 'react-router-dom';
 
 type LocationProps = {
+    id: string;
     image: string;
     distance?: number;
     isLocked?: boolean;
@@ -16,13 +18,14 @@ type LocationProps = {
 }
 
 const Location: React.FC<LocationProps> = (props: LocationProps) => {
-    const { image, isLocked, isGuessed, isMyLocation, className } = props;
+    const navigate = useNavigate();
+    const { id, image, isLocked, isGuessed, isMyLocation, className } = props;
     let { distance } = props;
 
     return (
         <>
             <Container image={image} onClick={() => {}} className={className ? className : ''}>
-                { isMyLocation && <EditLocation></EditLocation>}
+                { isMyLocation && <EditLocation onClick={() => navigate(`../edit-location/${id}`)}></EditLocation>}
                 { isMyLocation && <DeleteLocation></DeleteLocation>}
             
                 <Background className={((isLocked || isGuessed) && !isMyLocation) ? 'blured' : ''}></Background>

@@ -55,9 +55,9 @@ const Home: React.FC = () => {
                 <Paragraph>Try to guess the location of image by selecting position on the map. <br/> When you guess it, it gives you the error distance.</Paragraph>
                 
                 <GridContainer style={{marginTop: '50px'}}>
-                    <div onClick={() => navigate('/register')}><Location key='bled' image={Bled} isLocked={true} /></div>
-                    <div onClick={() => navigate('/register')}><Location key='logatec' image={Logatec} isLocked={true} /></div>
-                    <div onClick={() => navigate('/register')}><Location key='gornjigrad' image={GornjiGrad} isLocked={true} /></div>
+                    <div onClick={() => navigate('/register')}><Location id={'1'} key='bled' image={Bled} isLocked={true} /></div>
+                    <div onClick={() => navigate('/register')}><Location id={'2'} key='logatec' image={Logatec} isLocked={true} /></div>
+                    <div onClick={() => navigate('/register')}><Location id={'3'} key='gornjigrad' image={GornjiGrad} isLocked={true} /></div>
                 </GridContainer>
 
                 <GreenButton style={{width: '150px', marginTop: '80px', marginBottom: '150px'}} onClick={() => navigate('/register')}>SIGN UP</GreenButton>
@@ -79,7 +79,7 @@ const Home: React.FC = () => {
                     </div>
 
                     <GridContainer className='leftAlign'>
-                        { guesses.slice(0, guessesLimit).map((guess: any) => { return <Location key={guess.id} image={guess.locationImage} distance={guess.distance} isGuessed={true} /> })}
+                        { guesses.slice(0, guessesLimit).map((guess: any) => { return <Location id={guess.id} key={guess.id} image={guess.locationImage} distance={guess.distance} isGuessed={true} /> })}
                     </GridContainer>
 
                     <FullWidthContainer>
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
                     </div>
 
                     <GridContainer>
-                        { locations.slice(0, locationsLimit).map((location: any) => { return <Location key={location.id} image={location.image} /> })}
+                        { locations.slice(0, locationsLimit).map((location: any) => { return <Location id={location.id} key={location.id} image={location.image} /> })}
                     </GridContainer>
 
                     <FullWidthContainer>

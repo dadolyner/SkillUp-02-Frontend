@@ -27,6 +27,7 @@ export const Container = styled.div<LocationProps>`
     width: 100%;
     height: 200px;
     min-width: 280px;
+    max-width: 440px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
     background-image: url(${props => props.image});

@@ -25,7 +25,7 @@ const Profile: React.FC = () => {
                 <BestGuessesContainer>
                     <Header5>My best guesses</Header5>
                     <GridContainer className='leftAlign'>
-                        { guesses.map((guess: any) => { return <Location className='profileLocation' key={guess.id} image={guess.locationImage} distance={guess.distance} isGuessed={true} /> })}
+                        { guesses.map((guess: any) => { return <Location id={guess.id} className='profileLocation' key={guess.id} image={guess.locationImage} distance={guess.distance} isGuessed={true} /> })}
                     </GridContainer>
                     <LoadMore style={{width: '200px', marginTop:'20px'}}>Load More</LoadMore>
                 </BestGuessesContainer>
@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
                 <MyUploadsContainer>
                     <Header5>My uploads</Header5>
                     <GridContainer className='leftAlign'>
-                        { userInfo.location.map((location: any) => { return <Location className='profileLocation' key={location.id} image={location.image} isMyLocation={true} /> })}
+                        { userInfo.location.map((location: any) => { return <Location id={location.id} className='profileLocation' key={location.id} image={location.image} isMyLocation={true} /> })}
                     </GridContainer>
                     <LoadMore style={{width: '200px', marginTop:'20px'}}>Load More</LoadMore>
                 </MyUploadsContainer>

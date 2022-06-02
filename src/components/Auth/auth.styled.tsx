@@ -64,6 +64,13 @@ export const ErrorMessage = styled.div`
     text-align: center;
 `;
 
+export const ConfirmMessage = styled.div`
+    color: green;
+    font-size: 16px;
+    margin: 10px auto;
+    text-align: center;
+`;
+
 export const FloatingLabel = styled.div`
 	position: relative;
 	display: flex;

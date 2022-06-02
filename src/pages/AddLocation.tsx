@@ -57,8 +57,8 @@ const AddLocation: React.FC = () => {
             const accessToken = localStorage.getItem('accessToken');
             const response = await axios.post('/location', data, { headers: { Authorization: `Bearer ${accessToken}` } });
             if(response.status === 201) {
+                await UpdateUserInfo()
                 navigate('/profile')
-                UpdateUserInfo()
                 window.location.reload()
             }
         } catch (error) {}

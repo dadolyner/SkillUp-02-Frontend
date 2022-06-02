@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { ErrorMessage, Form, FloatingLabel, ShowPass } from '../components/Auth/auth.styled';
+import { ErrorMessage, Form, FloatingLabel, ShowPass, ConfirmMessage } from '../components/Auth/auth.styled';
 import { GreenButton, WhiteButton } from '../components/Buttons/buttons.styled';
 import { Header3, Paragraph, GreenText } from '../components/Typography/typography.styled';
 import { BigContainer, Container, ButtonsContainer } from '../components/Modals/options.styled';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from '../api/axios';
 
 const ChangePassword: React.FC = () => {
     const navigate = useNavigate();
+    const { token } = useParams();
 
 	const [isOldPasswordActive, setIsOldPasswordActive] = React.useState(false);
 	const [oldPasswordValue, setOldPasswordValue] = React.useState('');
@@ -18,12 +20,30 @@ const ChangePassword: React.FC = () => {
 	const [passwordConfirmValue, setPasswordConfirmValue] = React.useState('');
 
 	const [errorValue, setErrorValue] = React.useState('');
+	const [confirmValue, setConfirmValue] = React.useState('');
 
 	const [showPassword, setShowPassword] = React.useState(false);
 
 	const handleOldPasswordChange = (oldPassword: string) => { setOldPasswordValue(oldPassword); oldPassword !== '' ? setIsOldPasswordActive(true) : setIsOldPasswordActive(false); };
 	const handleNewPasswordChange = (newPassword: string) => { setNewPasswordValue(newPassword); newPassword !== '' ? setIsNewPasswordActive(true) : setIsNewPasswordActive(false); };
 	const handlePasswordConfirmChange = (passwordConfirm: string) => { setPasswordConfirmValue(passwordConfirm); passwordConfirm !== '' ? setIsPasswordConfirmActive(true) : setIsPasswordConfirmActive(false); };
+
+    const changePassword = async() => {
+        try {
+            if(newPasswordValue === passwordConfirmValue) {
+            await axios.patch(`/auth/change-password/${token}`, {
+                old_password: oldPasswordValue,
+                new_password: newPasswordValue
+            }, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } });
+            setConfirmValue('Password changed successfully');
+            setErrorValue('');
+        }
+        } catch (error) {
+            if(error.response.status === 400) setErrorValue('Invalid credentials!');
+            else if(error.response.status === 401) setErrorValue('Invalid credentials!');
+            else { setErrorValue('Something went wrong'); setConfirmValue(''); }
+        }
+    }
 
 	return (
 		<>
@@ -33,6 +53,7 @@ const ChangePassword: React.FC = () => {
                     <Paragraph>Change your password</Paragraph>
 
                     <ErrorMessage>{errorValue}</ErrorMessage>
+                    <ConfirmMessage>{confirmValue}</ConfirmMessage>
 
 			        <Form>
 			        	<FloatingLabel>
@@ -55,7 +76,7 @@ const ChangePassword: React.FC = () => {
 			        </Form>
 
                     <ButtonsContainer>
-                        <GreenButton>Submit</GreenButton>
+                        <GreenButton onClick={() => changePassword()}>Submit</GreenButton>
                         <WhiteButton onClick={() => navigate('/profile-settings')}>Cancel</WhiteButton>
                     </ButtonsContainer>
                 </Container>
