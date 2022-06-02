@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ErrorMessage } from '../components/Auth/auth.styled';
 import { GreenButton, WhiteButton } from '../components/Buttons/buttons.styled';
 import { Header3, Paragraph, GreenText } from '../components/Typography/typography.styled';
 import { BigContainer, Container, ButtonsContainer, ImageConatiner } from '../components/Modals/options.styled';
@@ -12,8 +11,6 @@ import UpdateUserInfo from '../components/updateUserInfo';
 const ChangeProfileImage: React.FC = () => {
     const navigate = useNavigate();
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-
-    const [errorValue, setErrorValue] = React.useState('');
 
     const [image, setImage] = React.useState(null);
     const inputFile = React.useRef(null);
@@ -49,8 +46,6 @@ const ChangeProfileImage: React.FC = () => {
                         <input type='file' id='avatar' ref={inputFile} style={{ display: 'none'}} onChange={() => uploadImage() }/>
 		    	        <img src={image ? image ?? Avatar : userInfo.avatar} alt='avatar' height={'64px'} width={'64px'} style={{cursor: 'pointer'}} />
                     </ImageConatiner>
-
-                    <ErrorMessage>{errorValue}</ErrorMessage>
 
 		    	    <GreenButton onClick={() => { inputFile.current.click() }}>UPLOAD NEW IMAGE</GreenButton>
 

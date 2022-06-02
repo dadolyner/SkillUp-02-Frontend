@@ -33,7 +33,7 @@ const Home: React.FC = () => {
             setLocations(filteredLocations);
         } catch (error) {}
     }
-    React.useEffect(() => { getData() }, []);
+    getData()
 
 
     if( isLoggedIn !== 'true') {

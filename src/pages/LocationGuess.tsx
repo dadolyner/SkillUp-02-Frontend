@@ -31,9 +31,7 @@ const GuessLocation: React.FC = () => {
         } catch (error) {}
     }
 
-    const guessLocation = async () => {
-        
-    }
+    // const guessLocation = async () => {}
 
 	if (isLoaded) {
 		return (
