@@ -1,19 +1,18 @@
 import * as React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import ChangeInfo from './ChangeInfo';
-import '../styles/GlobalStyles.css'
-import Home from './Home';
-import Login from './Login';
-import Register from './Register';
-import ChangePassword from './ChangePassword';
-import ChangeProfileImage from './ChangeProfileImage';
-import Profile from './Profile';
-import GuessLocation from './LocationGuess';
-import AddLocation from './AddLocation';
-import EditLocation from './EditLocation';
-import DeleteLocation from './DeleteLocation';
-import LocationConfirmation from './DeleteLocationConfirmation';
-import Leaderboard from '../components/Leaderboard/leaderboard';
+import './styles/GlobalStyles.css'
+import ChangeInfo from './pages/ChangeInfo';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ChangePassword from './pages/ChangePassword';
+import ChangeProfileImage from './pages/ChangeProfileImage';
+import Profile from './pages/Profile';
+import GuessLocation from './pages/LocationGuess';
+import AddLocation from './pages/AddLocation';
+import EditLocation from './pages/EditLocation';
+import DeleteLocation from './pages/DeleteLocation';
+import LocationConfirmation from './pages/DeleteLocationConfirmation';
 
 const App: React.FC = () => {
   return (
