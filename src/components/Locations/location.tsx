@@ -24,9 +24,10 @@ const Location: React.FC<LocationProps> = (props: LocationProps) => {
 
     return (
         <>
-            <Container image={image} onClick={() => {}} className={className ? className : ''}>
+            {/* eslint-disable-next-line @typescript-eslint/no-unused-expressions */}
+            <Container image={image} onClick={() => { (!isLocked && !isMyLocation) ? navigate(`../location/guess/${id}`) : null }} className={className ? className : ''}>
                 { isMyLocation && <EditLocation onClick={() => navigate(`../edit-location/${id}`)}></EditLocation>}
-                { isMyLocation && <DeleteLocation></DeleteLocation>}
+                { isMyLocation && <DeleteLocation onClick={() => navigate(`../delete-location/${id}`)}></DeleteLocation>}
             
                 <Background className={((isLocked || isGuessed) && !isMyLocation) ? 'blured' : ''}></Background>
                 <Holder>

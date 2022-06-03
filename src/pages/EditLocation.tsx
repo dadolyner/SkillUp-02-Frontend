@@ -46,7 +46,7 @@ const EditLocation: React.FC = () => {
 			}
 		} catch (error) {}
 	};
-	getLocationInfo();
+	React.useEffect(() => { getLocationInfo(); }, []);
 
 	if (isLoaded) {
 		return (

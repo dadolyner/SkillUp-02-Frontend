@@ -11,6 +11,9 @@ import Profile from './Profile';
 import GuessLocation from './LocationGuess';
 import AddLocation from './AddLocation';
 import EditLocation from './EditLocation';
+import DeleteLocation from './DeleteLocation';
+import LocationConfirmation from './DeleteLocationConfirmation';
+import Leaderboard from '../components/Leaderboard/leaderboard';
 
 const App: React.FC = () => {
   return (
@@ -26,6 +29,8 @@ const App: React.FC = () => {
 	    		<Route path='/change-profile-image' element={<ChangeProfileImage />} />
 	    		<Route path='/add-location' element={<ChangeProfileImage />} />
 	    		<Route path='/edit-location/:id' element={<EditLocation />} />
+	    		<Route path='/delete-location/:id' element={<DeleteLocation />} />
+	    		<Route path='/delete-location/confirm' element={<LocationConfirmation />} />
 	    		<Route path='/location/guess/:id' element={<GuessLocation />} />
 	    		<Route path='/location/create' element={<AddLocation />} />
 	    	</Routes>

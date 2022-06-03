@@ -14,7 +14,7 @@ const Home: React.FC = () => {
     const navigate = useNavigate();
     const [locations, setLocations] = React.useState([]);
     const [guesses, setGuesses] = React.useState([]);
-    const [guessesLimit, setGuessesLimit] = React.useState(4);
+    const [guessesLimit, setGuessesLimit] = React.useState(3);
     const [locationsLimit, setLocationsLimit] = React.useState(9);
 
     const isLoggedIn = localStorage.getItem('userLoggedIn')
@@ -33,7 +33,7 @@ const Home: React.FC = () => {
             setLocations(filteredLocations);
         } catch (error) {}
     }
-    getData()
+    React.useEffect(() => { getData() } , [])
 
 
     if( isLoggedIn !== 'true') {
@@ -83,7 +83,7 @@ const Home: React.FC = () => {
                     </GridContainer>
 
                     <FullWidthContainer>
-                        <LoadMore style={{width: '200px'}} onClick={() => setGuessesLimit(guessesLimit + 4) }>Load more</LoadMore>
+                        <LoadMore style={{width: '200px'}} onClick={() => setGuessesLimit(guessesLimit + 3) }>Load more</LoadMore>
                     </FullWidthContainer>
 
                     <div style={{marginTop: '100px'}}>
@@ -91,7 +91,7 @@ const Home: React.FC = () => {
                         <Paragraph style={{textAlign:'left'}}>New uploads from users. Try to guess all the locations by pressing on a picture.</Paragraph>
                     </div>
 
-                    <GridContainer>
+                    <GridContainer className='leftAlign'>
                         { locations.slice(0, locationsLimit).map((location: any) => { return <Location id={location.id} key={location.id} image={location.image} /> })}
                     </GridContainer>
 
