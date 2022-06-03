@@ -13,20 +13,6 @@ import Distance from '../components/distance';
 import UpdateUserInfo from '../components/updateUserInfo';
 import Leaderboard from '../components/Leaderboard/leaderboard';
 
-// [
-//     {
-//         "id": "8301b63b-b9bb-4cf2-b10b-7725a9df5a28",
-//         "latitude": "50.37688430786868",
-//         "longitude": "32.75360537040091",
-//         "distance": "182.7450",
-//         "timestamp": "2022-06-03T08:36:47.311Z",
-//         "user": {
-//             "first_name": "Bogdan",
-//             "last_name": "Novina"
-//         }
-//     }
-// ]
-
 const GuessLocation: React.FC = () => {
     Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY);
     Geocode.setLanguage("en");
@@ -60,6 +46,9 @@ const GuessLocation: React.FC = () => {
 			if (response.status === 200) {
 				const { data } = response;
 				setLocationData(data);
+                await getGuessesForLocation()
+                setIsDataLoaded(true);
+                
 			}
 		} catch (error) {}
 	};
@@ -70,12 +59,11 @@ const GuessLocation: React.FC = () => {
             if (response.status === 200) {
                 const { data } = response;
                 setGuessesData(data);
-                setIsDataLoaded(true);
             }
         } catch(error) {}
     }
 
-    React.useEffect(() => { getLocationInfo(); getGuessesForLocation(); }, []);
+    React.useEffect(() => { getLocationInfo(); }, []);
     
     const guessLocation = async () => {
         try {
