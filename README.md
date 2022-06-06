@@ -61,17 +61,6 @@ $ npm i
 $ npm start
 ```
 
-#### Tests
-
-```bash
-# e2e tests
-$ yarn run test:e2e
-```
-```bash
-# e2e tests - watch mode
-$ yarn run test:e2e:watch
-```
-
 ## References
 
 - SkillUp Mentor - [skillupmentor](https://skillupmentor.com/)
