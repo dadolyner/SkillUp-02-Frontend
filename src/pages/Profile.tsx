@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Container, UserContainer, BestGuessesContainer, MyUploadsContainer } from '../styles/Profile.styled'
+import { Container, UserContainer, BestGuessesContainer, MyUploadsContainer } from '../styles/Profie.styled'
 import { Avatar } from '../images/ImageExporter';
 import Navigation from '../components/Navigation/navigation';
 import Footer from '../components/Footer/footer';
