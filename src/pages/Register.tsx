@@ -6,7 +6,7 @@ import { Avatar, WhiteLogo, ColorLogo } from '../images/ImageExporter';
 import { Header3, Paragraph } from '../components/Typography/typography.styled';
 import axios from '../api/axios';
 import { useNavigate } from 'react-router-dom';
-import { generateUploadURL } from '../api/s3';
+import UploadImageToS3 from '../components/uploadImage';
 
 const Register: React.FC = () => {
     const navigate = useNavigate();
@@ -33,13 +33,7 @@ const Register: React.FC = () => {
     const handlePasswordChange = (password: string) => { setPasswordValue(password); password !== '' ? setIsPasswordActive(true) : setIsPasswordActive(false); };
 	const handlePasswordConfirmChange = (passwordConfirm: string) => { setPasswordConfirmValue(passwordConfirm); passwordConfirm !== '' ? setIsPasswordConfirmActive(true) : setIsPasswordConfirmActive(false); };
 
-    const uploadImage = async() => {
-        const s3Options = { headers: { 'Content-Type': 'image/png' } };
-        const url = await generateUploadURL(); 
-        await axios.put(url, inputFile.current.files[0] , s3Options)
-        const imageUrl = url.split('?')[0];
-        setImage(imageUrl);
-    }
+    const uploadImage = async () => { setImage(await UploadImageToS3(inputFile)) };
 
     const signUpFunction = async () => {
         if(passwordValue === passwordConfirmValue){

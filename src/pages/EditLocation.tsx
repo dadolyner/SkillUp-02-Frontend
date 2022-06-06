@@ -8,7 +8,7 @@ import { Container, LocationInfo, BottomButtons } from '../styles/EditLocation.s
 import { ImagePlaceholder } from '../images/ImageExporter';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
-import { generateUploadURL } from '../api/s3';
+import UploadImageToS3 from '../components/uploadImage';
 
 const EditLocation: React.FC = () => {
 	const navigate = useNavigate();
@@ -22,15 +22,7 @@ const EditLocation: React.FC = () => {
 	const { id } = useParams();
 	const inputFile = React.useRef(null);
 
-	const uploadImage = async () => {
-		try {
-			const s3Options = { headers: { 'Content-Type': 'image/png' } };
-			const url = await generateUploadURL();
-			await axios.put(url, inputFile.current.files[0], s3Options);
-			const imageUrl = url.split('?')[0];
-			setImage(imageUrl);
-		} catch (error) {}
-	};
+	const uploadImage = async () => { setImage(await UploadImageToS3(inputFile)) };
 
 	const getLocationInfo = async () => {
 		try {

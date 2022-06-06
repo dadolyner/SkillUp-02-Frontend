@@ -16,6 +16,8 @@ export const GreenButton = styled.button`
     &:hover {
         background: var(--dark);
     }
+
+    &.registerButton { width: '150px'; margin-top: '80px'; margin-bottom: '150px'; }
 `
 
 export const WhiteButton = styled.button`

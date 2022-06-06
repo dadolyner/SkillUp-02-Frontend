@@ -18,22 +18,23 @@ const Home: React.FC = () => {
     const [locationsLimit, setLocationsLimit] = React.useState(9);
 
     const isLoggedIn = localStorage.getItem('userLoggedIn')
+    const info = JSON.parse(localStorage.getItem('userInfo'))
 
-    const getData = async () => {
+    const GetOrRefreshData = async () => {
         try {
-            const response = await axios.get('/location');
+            setLocationsLimit(locationsLimit + 9);
+            const response = await axios.get(`/location?limit=${locationsLimit}`);
             const { data } = response
-            
-            const info = JSON.parse(localStorage.getItem('userInfo'))
-            const myGuesses = info.guess.sort((a: any, b: any) => {return a.distance - b.distance})
-            const myGuessesAndLocations = info.guess.map((guess: any) => guess.locationId)
-            const filteredLocations = data.filter((location:any) => !myGuessesAndLocations.includes(location.id) && location.userId !== info.id).sort((a: any, b: any) => { return a.timestamp - b.timestamp })
+
+            const myGuesses = info.guess.sort((a: any, b: any) => { return a.distance - b.distance })
+            const GuessedLocationsId = info.guess.map((guess: any) => guess.locationId)
+            const filteredLocations = data.filter((location:any) => !GuessedLocationsId.includes(location.id) && location.userId !== info.id).sort((a: any, b: any) => { return a.timestamp - b.timestamp })
             
             setGuesses(myGuesses)
             setLocations(filteredLocations);
         } catch (error) {}
     }
-    React.useEffect(() => { getData() } , [])
+    React.useEffect(() => { GetOrRefreshData() } , [])
 
 
     if( isLoggedIn !== 'true') {
@@ -60,7 +61,7 @@ const Home: React.FC = () => {
                     <div onClick={() => navigate('/register')}><Location id={'3'} key='gornjigrad' image={GornjiGrad} isLocked={true} /></div>
                 </GridContainer>
 
-                <GreenButton style={{width: '150px', marginTop: '80px', marginBottom: '150px'}} onClick={() => navigate('/register')}>SIGN UP</GreenButton>
+                <GreenButton className='registerButton' onClick={() => navigate('/register')}>SIGN UP</GreenButton>
             </Container>
 
             <Footer />
@@ -96,7 +97,7 @@ const Home: React.FC = () => {
                     </GridContainer>
 
                     <FullWidthContainer>
-                        <LoadMore style={{width: '200px'}} onClick={() => setLocationsLimit(locationsLimit + 9) }>Load more</LoadMore>
+                        <LoadMore style={{width: '200px'}} onClick={() => GetOrRefreshData() }>Load more</LoadMore>
                     </FullWidthContainer>
                 </LoggedInContainer>
 
