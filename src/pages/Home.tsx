@@ -31,12 +31,10 @@ const Home: React.FC = () => {
             const filteredLocations = data.filter((location:any) => !GuessedLocationsId.includes(location.id) && location.userId !== info.id).sort((a: any, b: any) => { return a.timestamp - b.timestamp })
             
             setGuesses(myGuesses)
-            console.log(myGuesses)
             setLocations(filteredLocations);
         } catch (error) {}
     }
     React.useEffect(() => { GetOrRefreshData() } , [])
-
 
     if( isLoggedIn !== 'true') {
     return (
