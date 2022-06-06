@@ -27,6 +27,8 @@ const GuessLocation: React.FC = () => {
 	const [guessesData, setGuessesData] = React.useState(null);
 	const [errorDistance, setErrorDistance] = React.useState(null);
 
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
 	const center = React.useMemo(() => ({ lat: 46, lng: 14 }), []);
 	const handleChangeCoords = async (event: any) => {
 		try {
@@ -73,6 +75,7 @@ const GuessLocation: React.FC = () => {
 				const { data } = response;
 				setErrorDistance(data.distance);
 				await UpdateUserInfo();
+                await getLocationInfo();
 			}
 		} catch (error) {}
 	};
@@ -121,9 +124,7 @@ const GuessLocation: React.FC = () => {
 								<br />
 							</GridItem>
 						</GuessInfo>
-						<GreenButton style={{ width: '150px', float: 'right' }} onClick={() => guessLocation()}>
-							GUESS
-						</GreenButton>
+						<GreenButton style={{ width: '150px', float: 'right' }} onClick={() => guessLocation()}>GUESS</GreenButton>
 					</MapsContainer>
 
 					<br />
@@ -132,7 +133,7 @@ const GuessLocation: React.FC = () => {
 						<Header4 style={{ textAlign: 'left' }}>Leaderboard</Header4>
 
 						{guessesData.map((guess: any, index: number) => {
-							const isMe = guess.user.id === localStorage.getItem('userId');
+							const isMe = guess.user.id === userInfo.id;
 							return <Leaderboard key={guess.id} user={`${guess.user.first_name} ${guess.user.last_name}`} image={guess.user.avatar} userPosition={index + 1} distance={guess.distance} timestamp={guess.timestamp} isMeUser={isMe} />;
 						})}
 					</LeaderboardContainer>

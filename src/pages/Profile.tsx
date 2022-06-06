@@ -29,7 +29,7 @@ const Profile: React.FC = () => {
                 <BestGuessesContainer>
                     <Header5>My best guesses</Header5>
                     <GridContainer className='leftAlign'>
-                        { guesses.slice(0, guessesLimit).map((guess: any) => { return <Location id={guess.id} className='profileLocation' key={guess.id} image={guess.locationImage} distance={guess.distance} isGuessed={true} /> })}
+                        { guesses.slice(0, guessesLimit).map((guess: any) => { return <Location id={guess.locationId} className='profileLocation' key={guess.id} image={guess.locationImage} distance={guess.distance} isGuessed={true} /> })}
                     </GridContainer>
                     <LoadMore style={{width: '200px', marginTop:'20px'}} onClick={() => setGuessesLimit(locationsLimit + 3) }>Load More</LoadMore>
                 </BestGuessesContainer>

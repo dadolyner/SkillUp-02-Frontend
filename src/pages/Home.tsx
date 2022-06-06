@@ -31,6 +31,7 @@ const Home: React.FC = () => {
             const filteredLocations = data.filter((location:any) => !GuessedLocationsId.includes(location.id) && location.userId !== info.id).sort((a: any, b: any) => { return a.timestamp - b.timestamp })
             
             setGuesses(myGuesses)
+            console.log(myGuesses)
             setLocations(filteredLocations);
         } catch (error) {}
     }
@@ -80,7 +81,7 @@ const Home: React.FC = () => {
                     </div>
 
                     <GridContainer className='leftAlign'>
-                        { guesses.slice(0, guessesLimit).map((guess: any) => { return <Location id={guess.id} key={guess.id} image={guess.locationImage} distance={guess.distance} isGuessed={true} /> })}
+                        { guesses.slice(0, guessesLimit).map((guess: any) => { return <Location id={guess.locationId} key={guess.id} image={guess.locationImage} distance={guess.distance} isGuessed={true} /> })}
                     </GridContainer>
 
                     <FullWidthContainer>

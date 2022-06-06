@@ -17,7 +17,7 @@ export const GreenButton = styled.button`
         background: var(--dark);
     }
 
-    &.registerButton { width: '150px'; margin-top: '80px'; margin-bottom: '150px'; }
+    &.registerButton { width: 150px; margin-top: 80px; margin-bottom: 150px; }
 `
 
 export const WhiteButton = styled.button`
