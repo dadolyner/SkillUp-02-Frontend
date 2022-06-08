@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Delete, Edit } from '../../images/ImageExporter'
+import { Delete, Edit } from '../../images/ImageExporter';
 
 export const GreenButton = styled.button`
     border: 0;
@@ -17,8 +17,12 @@ export const GreenButton = styled.button`
         background: var(--dark);
     }
 
-    &.registerButton { width: 150px; margin-top: 80px; margin-bottom: 150px; }
-`
+    &.registerButton {
+        width: 150px;
+        margin-top: 80px;
+        margin-bottom: 150px;
+    }
+`;
 
 export const WhiteButton = styled.button`
     border: 0;
@@ -35,7 +39,7 @@ export const WhiteButton = styled.button`
     &:hover {
         background: #ddd;
     }
-`
+`;
 
 export const DarkButton = styled.button`
     border: 0;
@@ -97,7 +101,6 @@ export const EditLocation = styled.button`
     }
 `;
 
-
 export const DeleteLocation = styled.button`
     border: 0;
     outline: 0;
@@ -120,4 +123,3 @@ export const DeleteLocation = styled.button`
         transform: scale(1.05);
     }
 `;
-

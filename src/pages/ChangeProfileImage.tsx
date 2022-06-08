@@ -14,40 +14,51 @@ const ChangeProfileImage: React.FC = () => {
 
     const [image, setImage] = React.useState(null);
     const inputFile = React.useRef(null);
-    const uploadImage = async() => {
+    const uploadImage = async () => {
         try {
             const s3Options = { headers: { 'Content-Type': 'image/png' } };
-            const url = await generateUploadURL(); 
-            await axios.put(url, inputFile.current.files[0] , s3Options)
+            const url = await generateUploadURL();
+            await axios.put(url, inputFile.current.files[0], s3Options);
             const imageUrl = url.split('?')[0];
             setImage(imageUrl);
         } catch (error) {}
-    }
+    };
 
-    const changeProfileImage = async() => {
+    const changeProfileImage = async () => {
         try {
-            const response = await axios.patch('/auth/change-profile-image', {
-                image: image
-            }, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } });
+            const response = await axios.patch(
+                '/auth/change-profile-image',
+                {
+                    image: image
+                },
+                { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }
+            );
             if (response.status === 200) {
-                await UpdateUserInfo()
+                await UpdateUserInfo();
                 navigate('/profile');
             }
         } catch (error) {}
-    }
+    };
     return (
-		<>
+        <>
             <BigContainer>
                 <Container>
-                    <Header3>Profile <GreenText>settings.</GreenText></Header3>
+                    <Header3>
+                        Profile <GreenText>settings.</GreenText>
+                    </Header3>
                     <Paragraph>Change your profile photo</Paragraph>
 
                     <ImageConatiner>
-                        <input type='file' id='avatar' ref={inputFile} style={{ display: 'none'}} onChange={() => uploadImage() }/>
-		    	        <img src={image ? image ?? Avatar : userInfo.avatar} alt='avatar' height={'64px'} width={'64px'} style={{cursor: 'pointer'}} />
+                        <input type="file" id="avatar" ref={inputFile} style={{ display: 'none' }} onChange={() => uploadImage()} />
+                        <img src={image ? image ?? Avatar : userInfo.avatar} alt="avatar" height={'64px'} width={'64px'} style={{ cursor: 'pointer' }} />
                     </ImageConatiner>
 
-		    	    <GreenButton onClick={() => { inputFile.current.click() }}>UPLOAD NEW IMAGE</GreenButton>
+                    <GreenButton
+                        onClick={() => {
+                            inputFile.current.click();
+                        }}>
+                        UPLOAD NEW IMAGE
+                    </GreenButton>
 
                     <ButtonsContainer>
                         <GreenButton onClick={() => changeProfileImage()}>Submit</GreenButton>
@@ -55,8 +66,8 @@ const ChangeProfileImage: React.FC = () => {
                     </ButtonsContainer>
                 </Container>
             </BigContainer>
-		</>
-	);
-}
+        </>
+    );
+};
 
 export default ChangeProfileImage;

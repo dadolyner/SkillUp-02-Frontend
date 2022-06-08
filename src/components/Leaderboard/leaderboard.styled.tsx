@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-type Position = { position: 1 | 2 | 3 | number; };
-type ifUser = { ifUser: boolean; }
+type Position = { position: 1 | 2 | 3 | number };
+type ifUser = { ifUser: boolean };
 
 export const Container = styled.div<ifUser>`
     display: flex;
@@ -10,7 +10,7 @@ export const Container = styled.div<ifUser>`
     column-gap: 20px;
     width: 100%;
     border-radius: 5px;
-    background-color: ${props => props.ifUser ? 'var(--primary)' : ''};
+    background-color: ${(props) => (props.ifUser ? 'var(--primary)' : '')};
 `;
 
 export const Place = styled.div<Position>`
@@ -19,7 +19,7 @@ export const Place = styled.div<Position>`
     height: 32px;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    background: ${props => props.position === 1 ? 'var(--first-pos)' : props.position === 2 ? 'var(--seccond-pos)' : props.position === 3 ? 'var(--third-pos)' : 'var(--rest-pos)'};
+    background: ${(props) => (props.position === 1 ? 'var(--first-pos)' : props.position === 2 ? 'var(--seccond-pos)' : props.position === 3 ? 'var(--third-pos)' : 'var(--rest-pos)')};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,15 +33,15 @@ export const Place = styled.div<Position>`
 
 export const UserInfoContainer = styled.div<ifUser>`
     font-size: 20px;
-    color: ${props => props.ifUser ? 'white' : 'var(--rest-pos)'};
-    content: ${props => props.ifUser ? 'You' : ''};
+    color: ${(props) => (props.ifUser ? 'white' : 'var(--rest-pos)')};
+    content: ${(props) => (props.ifUser ? 'You' : '')};
     @media screen and (max-width: 550px) {
         font-size: 16px;
     }
 `;
 
 export const TimestampContainer = styled.div<ifUser>`
-    color: ${props => props.ifUser ? 'white' : 'var(--rest-pos)'};
+    color: ${(props) => (props.ifUser ? 'white' : 'var(--rest-pos)')};
     font-size: 14px;
 
     @media screen and (max-width: 550px) {
@@ -52,7 +52,7 @@ export const TimestampContainer = styled.div<ifUser>`
 export const DistanceContainer = styled.div<ifUser>`
     margin: 10px;
     font-size: 16px;
-    color: ${props => props.ifUser ? 'white' : 'var(--primary)'};
+    color: ${(props) => (props.ifUser ? 'white' : 'var(--primary)')};
     margin-left: auto;
 
     @media screen and (max-width: 550px) {

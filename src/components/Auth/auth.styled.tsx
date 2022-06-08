@@ -11,7 +11,7 @@ export const Container = styled.div`
     grid-template-columns: 40% 60%;
     @media screen and (max-width: 900px) {
         grid-template-columns: 100%;
-	}
+    }
 `;
 
 export const FormContainer = styled.div`
@@ -72,51 +72,51 @@ export const ConfirmMessage = styled.div`
 `;
 
 export const FloatingLabel = styled.div`
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     margin: 5px 0;
-	& > label {
-		position: absolute;
-		color: #000;
-		font-size: 16px;
-		font-family: Arial, Helvetica, sans-serif;
-		padding: 0 10px;
-		pointer-events: none;
-		transform: translate(0, 24px) scale(1);
-		transform-origin: top left;
-		transition: all 0.2s ease-out;
-	}
-	&:focus-within > label {
-		transform: translate(0, 5px) scale(0.8);
-	}
-	& > input {
-		border: 0;
-		outline: 0;
-		border-bottom: 2px solid #ddd;
-		background: transparent;
-		padding: 14px 0 0 10px;
-		width: 99%;
-		height: 50px;
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 16px;
+    & > label {
+        position: absolute;
+        color: #000;
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 0 10px;
+        pointer-events: none;
+        transform: translate(0, 24px) scale(1);
+        transform-origin: top left;
+        transition: all 0.2s ease-out;
+    }
+    &:focus-within > label {
+        transform: translate(0, 5px) scale(0.8);
+    }
+    & > input {
+        border: 0;
+        outline: 0;
+        border-bottom: 2px solid #ddd;
+        background: transparent;
+        padding: 14px 0 0 10px;
+        width: 99%;
+        height: 50px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
         position: relative;
-	}
-	.Active {
-		transform: translate(0, 5px) scale(0.8);
-	}
-	& > input:focus,
-	& > input:active {
-		border-bottom: 2px solid var(--primary);
-	}
+    }
+    .Active {
+        transform: translate(0, 5px) scale(0.8);
+    }
+    & > input:focus,
+    & > input:active {
+        border-bottom: 2px solid var(--primary);
+    }
 `;
 
 export const HalfWidth = styled.div`
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-gap: 30px;
-	width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+    width: 100%;
 `;
 
 export const BottomLinks = styled.div`

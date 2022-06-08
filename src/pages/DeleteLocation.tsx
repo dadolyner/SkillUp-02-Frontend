@@ -10,31 +10,31 @@ const DeleteLocation: React.FC = () => {
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const deleteLocation = async() => {
-        try{
+    const deleteLocation = async () => {
+        try {
             const response = await axios.delete(`/location/delete/${id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } });
             const { status } = response;
-            if(status === 200){
+            if (status === 200) {
                 await UpdateUserInfo();
-                navigate('../delete-location/confirm')
+                navigate('../delete-location/confirm');
             }
-        } catch(error){}
-    }
+        } catch (error) {}
+    };
 
     return (
         <>
-            <BigContainer>              
+            <BigContainer>
                 <Container>
                     <Header3>Are you sure?</Header3>
                     <Paragraph>Your location will be deleted. There is no undo of this action.</Paragraph>
                     <ButtonsContainer>
-                        <GreenButton onClick={() => deleteLocation() }>SUBMIT</GreenButton>
+                        <GreenButton onClick={() => deleteLocation()}>SUBMIT</GreenButton>
                         <WhiteButton onClick={() => navigate('../profile')}>Cancel</WhiteButton>
                     </ButtonsContainer>
                 </Container>
             </BigContainer>
         </>
-    )
-}
+    );
+};
 
 export default DeleteLocation;

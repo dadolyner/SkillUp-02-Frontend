@@ -12,7 +12,7 @@ const s3 = new aws.S3({
     signatureVersion: 'v4',
 });
 
-export const generateUploadURL = async() => {
+export const generateUploadURL = async () => {
     const imageName = `${Date.now()}-${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}.png`;
 
     const uploadUrl = await s3.getSignedUrlPromise('putObject', {

@@ -16,7 +16,7 @@ const InfoConfirmation: React.FC = () => {
                 </Container>
             </BigContainer>
         </>
-    )
-}
+    );
+};
 
 export default InfoConfirmation;

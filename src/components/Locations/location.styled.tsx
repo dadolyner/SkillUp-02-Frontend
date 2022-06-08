@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 type LocationProps = {
     image: string;
-}
+};
 
 export const GridContainer = styled.div`
     display: flex;
@@ -13,8 +13,8 @@ export const GridContainer = styled.div`
     column-gap: 20px;
     width: 100%;
 
-    &.leftAlign { 
-        justify-content: flex-start; 
+    &.leftAlign {
+        justify-content: flex-start;
         @media screen and (max-width: 900px) {
             justify-content: center;
         }
@@ -30,7 +30,7 @@ export const Container = styled.div<LocationProps>`
     max-width: 440px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
-    background-image: url(${props => props.image});
+    background-image: url(${(props) => props.image});
     background-size: cover;
     background-position: center;
 
@@ -52,8 +52,8 @@ export const Background = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    &.blured { 
-        background-color: rgba(97, 155, 138, 0.8); 
+    &.blured {
+        background-color: rgba(97, 155, 138, 0.8);
     }
 `;
 

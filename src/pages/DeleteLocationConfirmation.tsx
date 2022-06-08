@@ -17,7 +17,7 @@ const LocationConfirmation: React.FC = () => {
                 </Container>
             </BigContainer>
         </>
-    )
-}
+    );
+};
 
 export default LocationConfirmation;

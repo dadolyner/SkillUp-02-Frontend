@@ -9,7 +9,7 @@ const UploadImageToS3 = async (inputFile: any) => {
         await axios.put(url, inputFile.current.files[0], s3Options);
         const imageUrl = url.split('?')[0];
         return imageUrl;
-    } catch (error) {}
+    } catch (error) { }
 };
 
 export default UploadImageToS3;

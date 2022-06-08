@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FooterContainer, Span } from './footer.styled'
+import { FooterContainer, Span } from './footer.styled';
 
 const Footer: React.FC = () => {
     return (
@@ -10,6 +10,6 @@ const Footer: React.FC = () => {
             </FooterContainer>
         </>
     );
-}
+};
 
 export default Footer;

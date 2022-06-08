@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-var-requires: "off" */
 export const WhiteLogo = require('./GeotaggerAssets/GeotaggerBWLogo.png')
 export const ColorLogo = require('./GeotaggerAssets/GeotaggerColorLogo.png')
 export const Avatar = require('./GeotaggerAssets/Avatar.png')
@@ -10,6 +11,6 @@ export const MapBackground = require('./GeotaggerAssets/MapBackground.png')
 export const Delete = require('./GeotaggerAssets/Delete.png')
 export const Edit = require('./GeotaggerAssets/Edit.png')
 
-export const Bled  = require('./LocationsSample/Bled.png')
-export const Logatec  = require('./LocationsSample/logatec.png')
-export const GornjiGrad  = require('./LocationsSample/gornji-grad.png')
+export const Bled = require('./LocationsSample/Bled.png')
+export const Logatec = require('./LocationsSample/logatec.png')
+export const GornjiGrad = require('./LocationsSample/gornji-grad.png')
